@@ -51,7 +51,6 @@ const ModelComponent = () => {
             height: window.innerHeight*0.7
         }
         const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height, 0.1, 200)
-        const clock = new THREE.Clock()
         const velocity = 0.15
         const textVelocity = 0.03
         const canvas = document.querySelector('canvas.webgl')
