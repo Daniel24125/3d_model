@@ -3,14 +3,16 @@ import * as THREE from "three"
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Model from "../assets/object.obj"
+import Loading from './Loading'
 
 const ModelComponent = () => {
-
+    const [isLoading, setLoading] = React.useState(true)
 
     React.useEffect(()=>{
         const scene = new THREE.Scene()
         let objects = []
         const objectLoader = new OBJLoader();
+        
         let labels = [
             {
                 text: "Input Module", 
@@ -84,8 +86,8 @@ const ModelComponent = () => {
             context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
     
             context.lineWidth = borderThickness;
-            // roundRect(context, borderThickness/2, borderThickness/2, (textWidth + borderThickness) * 1.1, fontsize * 1.4 + borderThickness, 8);
-    
+
+            
             context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
             context.fillText( message, borderThickness, fontsize + borderThickness);
     
@@ -117,15 +119,14 @@ const ModelComponent = () => {
                     obj.receiveShadow = true
                     objects.push(obj)
                     scene.add(obj)
-                    
+
                     //Lables
                     const sprite = generateLabel(labels[i].text)
                     labels[i].geometry = sprite
                     sprite.position.set(labels[i].position[0],labels[i].position[1], labels[i].position[2])
                     sprite.material.opacity = 0
                     scene.add(sprite)
-                    
-    
+                    setLoading(false)
                 });
             })
             //Light
@@ -223,8 +224,12 @@ const ModelComponent = () => {
  
 
 
-
-    return ( <canvas id="model" className="webgl"></canvas>)
+   
+    return ( 
+    <>
+        {isLoading && <Loading/>}
+        <canvas id="model" className="webgl"></canvas>
+    </>)
 }
 
 export default ModelComponent
