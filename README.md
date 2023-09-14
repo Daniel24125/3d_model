@@ -6,4 +6,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This webpage was created to allocate the 3D model of the realistic gastric model
 
-## [https://](https://rgm-um.vercel.app/)https://rgm-um.vercel.app/
+## https://rgm-um.vercel.app/
